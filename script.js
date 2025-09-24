@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 ...allrightss.slice(0, Math.min(allrightss.length, numrightssToShow)), 
                 ...allresponsibilitiess.slice(0, Math.min(allresponsibilitiess.length, numresponsibilitiessToShow))
             ];
-            instructions.textContent = 'Clique nos seus direitos - ** RIGHTS **!';
+            instructions.textContent = 'Selecione 4 dos seus direitos e clique em Verificar Respostas - ** RIGHTS **!';
         } else if (level === 2) {
             // Nível 2: Selecionar Invertebrados
             // Pega 4 invertebrados e 4 vertebrados (ou o máximo disponível se não houver 4)
@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 ...allresponsibilitiess.slice(0, Math.min(allresponsibilitiess.length, numresponsibilitiessToShow)), 
                 ...allrightss.slice(0, Math.min(allrightss.length, numrightssToShow))
             ];
-            instructions.textContent = 'Agora clique nas suas responsabilidades - ** RESPONSIBILITIES **!';
+            instructions.textContent = 'Agora selecione 4 de suas responsabilidades - ** RESPONSIBILITIES **!';
         }
 
         shuffleArray(animalsToDisplay); // Embaralha a seleção final para randomizar a ordem no grid
