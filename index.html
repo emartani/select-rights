@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Direitos e Respnsabilidades - RIGHTS AND RESPONSIBILITIES</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+</head>
+
+
+<body>
+    <div class="game-container">
+        <h1>RIGHTS AND RESPONSIBILITIES</h1>
+        <p id="instructions">Clique nos seus direitos começar - ** RIGHTS **!</p>
+
+        <div class="score-area">
+            <p>Pontuação: <span id="score">0</span></p>
+        </div>
+
+        <div id="animal-grid" class="animal-grid">
+            </div>
+
+        <div class="buttons-area">
+            <button id="check-answers" style="display: none;">Verificar Respostas</button>
+            <button id="next-level" style="display: none;">Próximo Nível</button>
+            <button id="restart-game" style="display: none;">Reiniciar Jogo</button>
+        </div>
+        
+        <p id="feedback"></p>
+    </div>
+
+    <audio id="correct-sound" src="sounds/correct.mp3" preload="auto"></audio>
+    <audio id="wrong-sound" src="sounds/wrong.mp3" preload="auto"></audio>
+    <audio id="level-complete-sound" src="sounds/level_complete.mp3" preload="auto"></audio>
+    <audio id="game-complete-sound" src="sounds/game_complete.mp3" preload="auto"></audio>
+
+    <footer class="game-footer">
+        <p>Desenvolvido por Emerson Martani</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

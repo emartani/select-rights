@@ -1,0 +1,294 @@
+body {
+    font-family: 'Fredoka One', cursive; /* Nova fonte divertida */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #87CEEB; /* Azul claro para o mar */
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-y: auto; /* Permite rolagem se o conteúdo for muito grande */
+    flex-direction: column; /* Coloca os elementos em coluna para o footer ficar abaixo */
+    justify-content: flex-start; /* Alinha o conteúdo ao topo para o footer ir para baixo */
+    }
+
+.game-container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 20px; /* Borda mais arredondada */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Sombra mais pronunciada */
+    text-align: center;
+    max-width: 950px; /* Aumenta um pouco a largura máxima */
+    width: 100%;
+    border: 5px solid #007bff; /* Adiciona uma borda colorida ao container */
+    margin-bottom: 20px; /* Adiciona um pouco de margem para o footer não ficar colado */
+}
+
+h1 {
+    color: #0056b3;
+    margin-bottom: 25px;
+    font-size: 2.5em; /* Aumenta o tamanho do título */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#instructions {
+    font-size: 1.4em; /* Aumenta o tamanho das instruções */
+    color: #333;
+    margin-bottom: 35px;
+}
+
+.score-area {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #007bff;
+    margin-bottom: 20px;
+}
+
+.animal-grid {
+    display: grid;
+    /* Alterado para tentar 4 colunas em telas maiores, mínimo de 160px por card */
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); 
+    gap: 25px; 
+    margin-bottom: 35px;
+    justify-content: center; /* Centraliza o grid dentro do container */
+}
+
+
+.animal-card {
+    background-color: #f0f8ff;
+    border: 4px solid #ccc; /* Borda um pouco mais grossa */
+    border-radius: 15px; /* Borda mais arredondada para o card */
+    padding: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 220px; /* Aumenta o tamanho mínimo do card */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.animal-card img {
+    max-width: 200px; /* Aumenta o tamanho da imagem */
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    transition: transform 0.2s ease;
+}
+
+.animal-card p {
+    /*font-weight: bold;*/
+    color: #333;
+    margin: 0;
+    font-size: 1.1em; /* Aumenta o tamanho do nome do animal */
+    text-transform: capitalize; /* Capitaliza a primeira letra do nome */
+    color: #f03131;
+}
+
+.animal-card.selected {
+    border-color: #28a745; /* Borda verde quando selecionado */
+    box-shadow: 0 0 15px rgba(40, 167, 69, 0.7); /* Sombra mais vibrante */
+    transform: scale(1.07); /* Mais destaque na seleção */
+}
+
+.animal-card:hover {
+    transform: translateY(-8px); /* Mais movimento no hover */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.animal-card.correct-answer {
+    background-color: #d4edda; /* Fundo verde claro para acerto */
+    border-color: #28a745;
+    animation: pulseCorrect 0.6s ease-out; /* Animação de pulso para acerto */
+}
+
+.animal-card.wrong-answer {
+    background-color: #f8d7da; /* Fundo vermelho claro para erro */
+    border-color: #dc3545;
+    animation: shake 0.4s ease-out; /* Animação de tremor para erro */
+}
+
+.animal-card.wrong-selected { /* Para animais incorretamente selecionados */
+    background-color: #f8d7da;
+    border-color: #dc3545;
+    animation: shake 0.4s ease-out;
+}
+
+.animal-card.not-selected-correct { /* Para animais corretos não selecionados */
+    background-color: #f8d7da;
+    border-color: #dc3545;
+    animation: pulseWrong 0.6s ease-out; /* Animação de pulso para não selecionado correto */
+}
+
+
+.buttons-area {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* Espaço entre os botões */
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    padding: 14px 30px; /* Aumenta o padding */
+    border: none;
+    border-radius: 10px; /* Mais arredondado */
+    font-size: 1.2em; /* Aumenta o tamanho da fonte do botão */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+button:hover {
+    background-color: #0056b3;
+    transform: translateY(-3px); /* Pequeno movimento no hover */
+}
+
+button:active {
+    transform: translateY(0); /* Efeito de clique */
+}
+
+#feedback {
+    font-size: 1.5em; /* Aumenta o tamanho do feedback */
+    margin-top: 25px;
+    font-weight: bold;
+    color: #333;
+}
+
+.correct {
+    color: #28a745; /* Verde para acertos */
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+.wrong {
+    color: #dc3545; /* Vermelho para erros */
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+/* Animações */
+@keyframes pulseCorrect {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+@keyframes pulseWrong {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.95); }
+    100% { transform: scale(1); }
+}
+
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Media Queries para responsividade */
+@media (max-width: 768px) {
+    .game-container {
+        padding: 20px;
+    }
+    h1 {
+        font-size: 2em;
+    }
+    #instructions {
+        font-size: 1.1em;
+    }
+    .animal-grid {
+        /* Para telas de tablet na vertical e celulares, o grid se ajustará para 2 colunas */
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); 
+        gap: 15px;
+    }
+    .animal-card {
+        min-height: 200px;
+    }
+    .animal-card img {
+        max-width: 100px;
+    }
+    .animal-card p {
+        font-size: 1em;
+    }
+    button {
+        padding: 10px 20px;
+        font-size: 1em;
+    }
+    .buttons-area {
+        flex-direction: column; /* Botões empilham em telas pequenas */
+        gap: 10px;
+    }
+    .game-footer {
+        margin-top: 20px;
+        padding: 10px;
+        font-size: 0.8em;
+    }
+}
+
+@media (max-width: 480px) {
+    .game-container {
+        padding: 15px;
+        border-radius: 10px;
+    }
+    h1 {
+        font-size: 1.8em;
+    }
+    #instructions {
+        font-size: 1em;
+    }
+    .animal-grid {
+        /* Para telas de celular muito pequenas, pode ser 1 ou 2 colunas */
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); 
+        gap: 10px;
+    }
+    .animal-card {
+        min-height: 180px;
+        padding: 10px;
+    }
+    .animal-card img {
+        max-width: 60px;
+    }
+    .animal-card p {
+        font-size: 0.9em;
+    }
+    button {
+        padding: 8px 15px;
+        font-size: 0.9em;
+    }
+    .score-area {
+        font-size: 1.2em;
+    }
+    .game-footer {
+        margin-top: 15px;
+        padding: 8px;
+        font-size: 0.75em;
+    }
+
+}
+
+/* Estilos para o Footer */
+.game-footer {
+    margin-top: 30px; /* Espaçamento acima do footer */
+    padding: 15px;
+    background-color: #0056b3; /* Cor de fundo que combine com o tema */
+    color: white;
+    font-size: 0.9em;
+    border-radius: 10px; /* Borda arredondada para combinar com o container */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 100%; /* Ocupa a largura total do container do jogo */
+    max-width: 950px; /* Mesma largura máxima do game-container */
+    text-align: center;
+    position: relative; /* Para garantir que ele se posicione corretamente abaixo do container */
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
